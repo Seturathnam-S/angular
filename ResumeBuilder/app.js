@@ -26,6 +26,11 @@ app.use((err, req, res, next) => {
         res.status(422).send(valErrors)
     }
 });
+app.use(express.static(__dirname + './client/dist'));
 
+app.get('/*', function(req,res) {
+
+res.sendFile(path.join(__dirname+'./client/dist/index.html'));
+});
 // start server
 app.listen(process.env.PORT, () => console.log(`Server started at port : ${process.env.PORT}`));
